@@ -9,7 +9,8 @@
   "dependencies": {
     "expo-cli": "^2.16.1",
     "react": "16.8.3",
-    "react-native": "0.59.5"
+    "react-native": "0.59.5",
+    "react-native-svg": "^9.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

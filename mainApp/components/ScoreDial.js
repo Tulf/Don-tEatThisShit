@@ -1,8 +1,14 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import Toilet from './Toilet';
 
 const ScoreDial = (props) => {
-	return <Text>{props.score}</Text>;
+	return (
+		<>
+			<Toilet />
+			<Text>{props.score}</Text>
+		</>
+	);
 };
 
 export default ScoreDial;
