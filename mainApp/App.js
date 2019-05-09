@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import ScoreDial from './components/ScoreDial';
+import Camera from './components/Camera';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -21,11 +22,10 @@ export default class App extends Component<Props> {
 		score: Math.floor(Math.random() * 100),
 	};
 	render() {
-		console.log(this.state.score);
 		return (
-			<View style={styles.container}>
-				<ScoreDial score={this.state.score} />
-			</View>
+			// <View style={styles.container}>
+			<Camera />
+			// </View>
 		);
 	}
 }
