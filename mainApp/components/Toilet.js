@@ -1,30 +1,82 @@
-import React from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
-import Svg, { Circle, Rect } from 'react-native-svg';
+import React, { Component } from 'react';
+import { View, Animated, Easing } from 'react-native';
+import Svg, { Circle, Path } from 'react-native-svg';
 
-class Toilet extends React.Component {
-	componentDidMount() {
-		// const { currentValue, totalValue } = this.props;
-		this.animate(20, 70);
+AnimatedPath = Animated.createAnimatedComponent(Path);
+
+class Toilet extends Component {
+	constructor() {
+		super();
+		this.state = {
+			progress: new Animated.Value(0),
+		};
 	}
-	animate = (current, total) =>
-		Animated.timing(this.state.width, {
-			toValue: current / total,
-			duration: 4000,
-			useNativeDriver: true,
+	componentDidMount() {
+		Animated.timing(this.state.progress, {
+			toValue: 1,
+			duration: 1000,
 		}).start();
+	}
+
 	render() {
+		function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+			var angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+
+			return {
+				x: centerX + radius * Math.cos(angleInRadians),
+				y: centerY + radius * Math.sin(angleInRadians),
+			};
+		}
+
+		function describeArc(x, y, radius, startAngle, endAngle) {
+			var start = polarToCartesian(x, y, radius, endAngle);
+			var end = polarToCartesian(x, y, radius, startAngle);
+
+			var largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+
+			var d = [
+				'M',
+				start.x,
+				start.y,
+				'A',
+				radius,
+				radius,
+				0,
+				largeArcFlag,
+				0,
+				end.x,
+				end.y,
+			].join(' ');
+
+			return d;
+		}
+
+		let R = 160;
+		let dRange = [];
+		let iRange = [];
+		let steps = 359;
+		for (var i = 0; i < steps; i++) {
+			dRange.push(describeArc(160, 160, 160, 0, i));
+			iRange.push(i / (steps - 1));
+		}
+
+		var _d = this.state.progress.interpolate({
+			inputRange: iRange,
+			outputRange: dRange,
+		});
+
 		return (
-			<Svg height='50%' width='50%' viewBox='0 0 100 100'>
-				<Rect
-					x='15'
-					y='15'
-					width='70'
-					height='70'
-					stroke='#ffafff'
-					strokeWidth='10'
-					fill='#afffff'
+			<Svg style={{ flex: 1 }}>
+				<Circle
+					cx={R}
+					cy={R}
+					r={R}
+					stroke='green'
+					strokeWidth='2.5'
+					fill='green'
 				/>
+				{/*       X0  Y0               X1   Y1*/}
+				<AnimatedPath d={_d} stroke='red' strokeWidth={5} fill='none' />
 			</Svg>
 		);
 	}

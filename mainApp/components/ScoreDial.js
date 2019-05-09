@@ -5,7 +5,7 @@ import Toilet from './Toilet';
 const ScoreDial = (props) => {
 	return (
 		<>
-			<Toilet />
+			{/* <Toilet /> */}
 			<Text>{props.score}</Text>
 		</>
 	);
