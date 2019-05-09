@@ -6,9 +6,13 @@ const ScoreDial = (props) => {
 	return (
 		<>
 			{/* <Toilet /> */}
-			<Text>{props.score}</Text>
+			<Text style={styles.header}>{props.score}</Text>
 		</>
 	);
 };
-
+const styles = StyleSheet.create({
+	header: {
+		fontSize: 120,
+	},
+});
 export default ScoreDial;

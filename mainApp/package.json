@@ -4,16 +4,14 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
+		"test": "jest",
+		"android-dev": "adb reverse tcp:8081 tcp:8081 && react-native run-android"
 	},
 	"dependencies": {
 		"expo-cli": "^2.16.1",
 		"react": "16.8.3",
 		"react-native": "0.59.5",
 		"react-native-svg": "^9.4.0"
-	},
-	"scripts": {
-		"android-dev": "adb reverse tcp:8081 tcp:8081 && react-native run-android"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.4",
