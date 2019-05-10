@@ -1,0 +1,3 @@
+rootProject.name = 'foodChecker'
+
+include ':app'
