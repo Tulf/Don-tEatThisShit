@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View, ImageBackground } from 'react-native';
-import { RNCamera as Camera } from 'react-native-camera';
+import { RNCamera } from 'react-native-camera';
 import RNTextDetector from 'react-native-text-detector';
 
 import style, { screenHeight, screenWidth } from './styles';
@@ -91,7 +91,7 @@ export default class App extends React.Component {
 		return (
 			<View style={style.screen}>
 				{!this.state.image ? (
-					<Camera
+					<RNCamera
 						ref={(cam) => {
 							this.camera = cam;
 						}}
@@ -113,7 +113,8 @@ export default class App extends React.Component {
 								</View>
 							);
 						}}
-					</Camera>
+					</RNCamera>
+					<hello>kugfjjkjhl</hello>
 				) : null}
 				{this.state.image ? (
 					<ImageBackground
